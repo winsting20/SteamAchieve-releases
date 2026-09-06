@@ -45,11 +45,22 @@
 
 ## SmartScreen · 백신 경고
 
-이 앱은 PyInstaller 로 만든 단일 exe 이고 **코드 서명이 없는 개인 배포물**입니다. 처음 실행할 때 Windows SmartScreen 이 "알 수 없는 게시자" 경고를 띄울 수 있습니다.
+이 앱은 PyInstaller 로 만든 단일 exe 이고 **코드 서명이 없는 개인 배포물**입니다. 처음 실행하면 Windows 가 파란 창으로 **"Windows의 PC 보호 — 인식할 수 없는 앱의 시작을 차단했습니다"** 를 띄웁니다. 바이러스라는 뜻이 아니라 **처음 보는 파일이라 아직 평판이 없다**는 뜻입니다.
 
-- "추가 정보" → "실행" 을 누르면 됩니다.
-- 파일이 원본인지는 위의 SHA-256 해시로 확인할 수 있습니다.
-- 그래도 못 미더우면 실행하지 않으셔도 됩니다. 이 경고를 근본적으로 없애는 방법은 코드 서명 인증서 구입뿐이라 지금은 서명하지 않고 배포합니다.
+**실행하는 방법** — 그 창에는 [실행 안 함] 버튼만 크게 보입니다. 실행하려면:
+
+1. 창 왼쪽 위의 작은 글씨 **"추가 정보"** 를 누릅니다(버튼이 아니라 링크라 눈에 잘 안 띕니다).
+2. 그러면 아래에 **[실행]** 버튼이 나타납니다. 그것을 누릅니다.
+
+**zip 을 푼 뒤에도 막힌다면** — 인터넷에서 받은 zip 은 안에 든 파일까지 "차단됨" 표시가 붙습니다. zip 파일을 **오른쪽 클릭 → 속성 → 아래쪽 [차단 해제] 체크 → 확인** 한 뒤에 풀면 깔끔합니다.
+
+**받은 파일이 원본인지 확인** — 릴리스 노트의 SHA-256 과 비교하세요.
+
+```powershell
+Get-FileHash .\SteamAchieve.exe -Algorithm SHA256
+```
+
+**이 경고는 언제 사라지나요** — 서명이 없으면 평판이 **파일 하나(해시) 단위**로만 쌓이고, 새 버전을 내면 0 에서 다시 시작합니다. 즉 업데이트를 계속하는 동안에는 계속 보입니다([마이크로소프트 문서](https://learn.microsoft.com/windows/apps/package-and-deploy/smartscreen-reputation)). 사용자가 늘면 코드 서명이나 Microsoft Store 배포를 검토할 예정입니다. 그때까지는 위 방법으로 실행하시거나, 못 미더우면 실행하지 않으셔도 됩니다.
 
 ## 데이터와 삭제
 
@@ -96,7 +107,11 @@ The key is stored encrypted with Windows DPAPI in `%APPDATA%\SteamAchieve\creden
 Set **Game details** to Public in your Steam privacy settings; otherwise your own unlock status returns 403 and the app shows those items as "unknown" rather than 0%.
 
 ### SmartScreen / antivirus
-This is an unsigned single-file PyInstaller build by an individual developer, so SmartScreen may warn about an unknown publisher. Click "More info" → "Run anyway", and verify the SHA-256 hash above if in doubt.
+This is an unsigned single-file PyInstaller build by an individual developer, so Windows shows **"Windows protected your PC"** on first run. It is not a malware verdict — the file simply has no reputation yet.
+
+To run it: click the small **"More info"** link (top-left of that dialog — it is a link, not a button), then **"Run anyway"**. If the extracted files are still blocked, right-click the **zip** → Properties → tick **Unblock** → OK, then extract again. Verify the download with `Get-FileHash .\SteamAchieve.exe -Algorithm SHA256` against the hashes in the release notes.
+
+Unsigned files build SmartScreen reputation **per file hash**, so every new release starts from zero ([Microsoft docs](https://learn.microsoft.com/windows/apps/package-and-deploy/smartscreen-reputation)). Code signing or Store distribution will be considered once there are enough users.
 
 ### Data
 Everything lives in `%APPDATA%\SteamAchieve\`. Delete that folder to remove all data. The app never writes to the registry.
