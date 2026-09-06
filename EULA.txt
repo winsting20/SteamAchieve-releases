@@ -1,0 +1,115 @@
+SteamAchieve 최종 사용자 이용 약관 (EULA)
+SteamAchieve End User License Agreement
+버전 1.0 · 2026-09-05
+
+────────────────────────────────────────────────────────────
+한국어
+────────────────────────────────────────────────────────────
+
+본 소프트웨어("SteamAchieve" 또는 "앱")는 개인 개발자 Winsting(이하 "개발자")이 배포하는
+무료 소프트웨어입니다. 앱을 설치·실행하면 아래 조건에 동의한 것으로 봅니다. 동의하지
+않으면 앱을 실행하지 말고 삭제하십시오.
+
+1. 허용되는 사용
+   - 개인적·비상업적 목적으로 무료로 사용할 수 있습니다.
+   - 공식 배포 페이지(https://github.com/winsting20/SteamAchieve-releases)에서 받은
+     원본 파일을 그대로 사용해야 합니다.
+
+2. 금지되는 행위
+   - 상업적 이용: 판매, 유료 서비스의 일부로 제공, 광고·수익 목적의 배포 등.
+   - 역공학, 디컴파일, 디스어셈블, 소스 코드 추출 시도.
+   - 수정, 파생물 제작, 일부 코드·자원의 발췌 사용.
+   - 개발자의 허락 없는 재배포(미러·재업로드). 다른 사람에게 알릴 때는 공식 배포
+     페이지의 링크를 전달하십시오.
+   - 앱을 이용한 Steam 이용약관 위반, 타인 계정 데이터의 무단 수집.
+
+3. 소유권
+   - 앱과 그 구성 요소(코드·디자인·문구)의 저작권은 개발자에게 있습니다. 본 약관은
+     사용권을 부여할 뿐 소유권을 이전하지 않습니다.
+   - Steam 및 관련 상표는 Valve Corporation 의 자산입니다. 이 앱은 Valve 와 무관한
+     비공식 도구이며 Valve 가 후원·보증하지 않습니다.
+
+4. 개인정보와 API 키
+   - 앱은 사용자가 입력한 Steam Web API 키와 SteamID 를 사용자의 PC 에만 저장합니다
+     (Windows DPAPI 로 암호화). 개발자를 포함한 어떤 외부 서버로도 전송하지 않습니다.
+   - 앱이 접속하는 곳은 PRIVACY.md 에 전부 나열되어 있습니다. 사용자는 방화벽·프록시로
+     이를 직접 확인할 수 있습니다.
+   - 키는 본인 것만 사용하십시오. 키 관리 책임은 사용자에게 있습니다.
+
+5. 무보증·책임 제한
+   - 앱은 "있는 그대로" 제공되며, 상품성·특정 목적 적합성·무오류에 대한 어떤 보증도
+     하지 않습니다.
+   - 앱 사용으로 발생한 데이터 손실, 계정 제한, 기타 손해에 대해 개발자는 법이 허용하는
+     최대 한도 내에서 책임을 지지 않습니다. Steam Web API 의 호출 제한·정책은 Valve 가
+     정하며 개발자가 통제할 수 없습니다.
+
+6. 종료
+   - 본 약관을 위반하면 사용권은 자동으로 종료됩니다. 종료 시 앱을 삭제해야 합니다.
+
+7. 변경
+   - 개발자는 약관을 변경할 수 있으며, 변경된 약관은 새 버전의 배포물에 포함됩니다.
+
+8. 준거법
+   - 본 약관은 대한민국 법률에 따릅니다.
+
+문의: https://github.com/winsting20/SteamAchieve-releases/issues
+
+────────────────────────────────────────────────────────────
+English
+────────────────────────────────────────────────────────────
+
+This software ("SteamAchieve" or the "App") is free software distributed by an
+individual developer, Winsting (the "Developer"). By installing or running the App
+you agree to the terms below. If you do not agree, do not run the App and delete it.
+
+1. Permitted use
+   - You may use the App free of charge for personal, non-commercial purposes.
+   - Use only the unmodified original file obtained from the official release page
+     (https://github.com/winsting20/SteamAchieve-releases).
+
+2. Prohibited conduct
+   - Commercial use: selling the App, bundling it into a paid service, or
+     distributing it for advertising or revenue.
+   - Reverse engineering, decompiling, disassembling, or attempting to extract the
+     source code.
+   - Modifying the App, creating derivative works, or reusing any part of its code
+     or assets.
+   - Redistribution (mirrors, re-uploads) without the Developer's permission. To
+     share the App, link to the official release page.
+   - Using the App to violate the Steam Subscriber Agreement or to collect other
+     people's account data without authorization.
+
+3. Ownership
+   - The App and its components (code, design, text) are copyrighted by the
+     Developer. This agreement grants a license to use, not ownership.
+   - Steam and related marks are the property of Valve Corporation. The App is an
+     unofficial tool not affiliated with, sponsored by, or endorsed by Valve.
+
+4. Privacy and API key
+   - The App stores the Steam Web API key and SteamID you enter only on your PC
+     (encrypted with Windows DPAPI). It never sends them to any external server,
+     including the Developer's.
+   - Every host the App connects to is listed in PRIVACY.md. You can verify this
+     yourself with a firewall or proxy.
+   - Use only your own key. You are responsible for keeping it safe.
+
+5. No warranty; limitation of liability
+   - The App is provided "as is", without warranty of any kind, including
+     merchantability, fitness for a particular purpose, or freedom from errors.
+   - To the maximum extent permitted by law, the Developer is not liable for data
+     loss, account restrictions, or any other damage arising from use of the App.
+     Steam Web API rate limits and policies are set by Valve and are outside the
+     Developer's control.
+
+6. Termination
+   - This license terminates automatically if you breach these terms. On
+     termination you must delete the App.
+
+7. Changes
+   - The Developer may change these terms; the updated terms ship with new
+     releases.
+
+8. Governing law
+   - These terms are governed by the laws of the Republic of Korea.
+
+Contact: https://github.com/winsting20/SteamAchieve-releases/issues
