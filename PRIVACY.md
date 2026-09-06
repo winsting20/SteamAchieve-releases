@@ -1,6 +1,6 @@
 # SteamAchieve 개인정보 안내 · Privacy Notice
 
-버전 1.0 · 2026-09-05 · 앱 버전 0.5.5 기준
+버전 1.1 · 2026-09-07 · 앱 버전 0.5.6 기준
 
 ## 한국어
 
@@ -15,7 +15,7 @@ SteamAchieve 는 서버가 없는 완전 로컬 도구입니다. 사용자의 �
 | 보유 게임·플레이타임·업적·전역 달성률·게임 태그·가격 | Steam Web API / Steam 스토어 API | `cache\` 폴더 | 안 감 |
 | 업적·게임 아이콘, 커버 이미지 | Steam CDN | `cache\icons\` | 안 감 |
 | 친구 목록·친구의 보유 게임·친구의 업적 (옵트인) | Steam Web API — **친구가 공개한 것만** | `cache\friends\` (7일) | 안 감 |
-| 수동 추가 친구 | 사용자가 입력 | `friends_manual.json` | 안 감 |
+| 수동 추가 친구, 친구 별명 | 사용자가 입력 | `friends_manual.json` | 안 감 |
 | 업적 메모·북마크, 월간 목표, 화면 설정 | 사용자가 입력 | `notes.json`, `state.json` | 안 감 |
 | 업적 내 진행도("8,988 / 10,000") | 내 **공개 프로필 업적 페이지**(Web API 에 없는 값) | `cache\progress\` (1시간) | 안 감 |
 | 오류 기록 | 앱 내부 예외 | `last_error.txt`, `session_log.txt` (SteamID 는 가려서 기록) | 안 감 — 사용자가 문제 보고 때 직접 첨부할 때만 |
@@ -43,8 +43,9 @@ SteamAchieve 는 서버가 없는 완전 로컬 도구입니다. 사용자의 �
 - 설정 › 저장 › "캐시 비우기" 로 캐시를, "로그아웃"으로 키를 지웁니다.
 - 전부 지우려면 `%APPDATA%\SteamAchieve\` 폴더를 삭제하면 됩니다. 앱은 그 밖에 아무것도 남기지 않습니다(레지스트리는 읽기만 하고 쓰지 않습니다).
 
-### 로컬 레지스트리
+### 로컬 레지스트리 · 스팀 클라이언트
 - 현재 실행 중인 게임을 표시하기 위해 `HKCU\Software\Valve\Steam` 의 `RunningAppID` 등 몇 개 키를 **읽기만** 합니다. 값을 쓰거나 Steam 클라이언트에 영향을 주지 않습니다.
+- "스팀에서 보기" 버튼은 `steam://nav/games/details/<appid>`(보유) 또는 `steam://store/<appid>`(미보유) 주소를 **운영체제 셸에 넘길 뿐**입니다. 게임 번호 외에 아무것도 실리지 않고, 앱이 직접 접속하는 곳은 늘어나지 않습니다. **게임을 실행하거나 설치하지 않습니다.**
 
 문의: https://github.com/winsting20/SteamAchieve-releases/issues
 
@@ -63,7 +64,7 @@ SteamAchieve is a fully local tool with no server. Your data never leaves your P
 | Owned games, playtime, achievements, global percentages, tags, prices | Steam Web API / Steam store API | `cache\` | No |
 | Achievement/game icons, cover images | Steam CDN | `cache\icons\` | No |
 | Friend list, friends' owned games and achievements (opt-in) | Steam Web API — **public data only** | `cache\friends\` (7 days) | No |
-| Manually added friends | You | `friends_manual.json` | No |
+| Manually added friends, friend nicknames | You | `friends_manual.json` | No |
 | Notes, bookmarks, monthly goal, UI settings | You | `notes.json`, `state.json` | No |
 | In-achievement progress ("8,988 / 10,000") | Your **public profile achievement page** (not available in the Web API) | `cache\progress\` (1 hour) | No |
 | Error logs | App exceptions | `last_error.txt`, `session_log.txt` (SteamID masked) | No — only if you attach them to a bug report yourself |
@@ -91,7 +92,8 @@ Nothing else. You can verify with a firewall or proxy.
 - Settings › Storage › "Clear cache" removes the cache; "Log out" removes the key.
 - To remove everything, delete `%APPDATA%\SteamAchieve\`. The app leaves nothing else (it only reads the registry, never writes).
 
-### Local registry
+### Local registry and the Steam client
 - To show the currently running game the app **reads** a few keys under `HKCU\Software\Valve\Steam` (e.g. `RunningAppID`). It never writes or affects the Steam client.
+- The "View in Steam" button only hands `steam://nav/games/details/<appid>` (owned) or `steam://store/<appid>` (not owned) to the OS shell. Nothing but the app id travels with it, and it adds no host the app connects to. **It does not launch or install the game.**
 
 Contact: https://github.com/winsting20/SteamAchieve-releases/issues
