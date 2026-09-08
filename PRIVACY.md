@@ -1,6 +1,6 @@
 # SteamAchieve 개인정보 안내 · Privacy Notice
 
-버전 1.1 · 2026-09-07 · 앱 버전 0.5.8 기준
+버전 1.1 · 2026-09-08 · 앱 버전 0.5.9 기준
 
 ## 한국어
 
@@ -31,6 +31,7 @@ SteamAchieve 는 서버가 없는 완전 로컬 도구입니다. 사용자의 �
 | `cdn.cloudflare.steamstatic.com`, `cdn.akamai.steamstatic.com`, `shared.cloudflare.steamstatic.com`, `steamcdn-a.akamaihd.net` | 업적 아이콘·게임 아이콘·커버 이미지 (Steam API 응답이 주는 이미지 주소도 이 계열 호스트) | 화면에 보이는 이미지가 필요할 때 |
 | `api.github.com` | **새 버전 확인 (옵트인, 기본 꺼짐)** — 릴리스 페이지에 인증 없는 GET 1회/일. 키·SteamID 는 어떤 형태로도 실리지 않음 | 설정에서 켠 경우만 |
 | `github.com` | 릴리스 페이지·문제 보고 페이지를 **브라우저로** 열 때(앱 자체는 접속하지 않음) | 사용자가 버튼을 눌렀을 때 |
+| `isthereanydeal.com`, `www.fanatical.com`, `www.greenmangaming.com`, `www.humblebundle.com` | "최저가 보기" — 설정에서 고른 사이트의 게임 페이지를 **브라우저로** 열 때(앱 자체는 접속하지 않으며 가격 데이터도 받지 않음). 주소에는 스팀 게임 번호 또는 게임 이름만 실림. 제휴 링크 아님 | 사용자가 메뉴·버튼을 눌렀을 때 |
 
 ### 수집하지 않는 것
 - 사용 통계, 클릭 로그, 광고 식별자, 크래시 자동 전송 — 코드에 그런 경로 자체가 없습니다.
@@ -80,6 +81,7 @@ Nothing else. You can verify with a firewall or proxy.
 | `cdn.cloudflare.steamstatic.com`, `cdn.akamai.steamstatic.com`, `shared.cloudflare.steamstatic.com`, `steamcdn-a.akamaihd.net` | Icons and cover images (image URLs returned by the Steam API point at these hosts) | When an image is shown |
 | `api.github.com` | **Update check (opt-in, off by default)** — one unauthenticated GET per day to the releases page. The key and SteamID are never included | Only if enabled in Settings |
 | `github.com` | Release page / issue page opened **in your browser** (the app itself does not connect) | When you click the button |
+| `isthereanydeal.com`, `www.fanatical.com`, `www.greenmangaming.com`, `www.humblebundle.com` | "See best price" — opens the game's page on the site you chose **in your browser** (the app itself does not connect and downloads no price data). The URL carries only the Steam app id or the game name. Not affiliate links | When you click the menu item or button |
 
 ### What is not collected
 - Usage statistics, click logs, advertising IDs, automatic crash upload — the code has no such path.
