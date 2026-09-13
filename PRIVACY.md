@@ -1,6 +1,6 @@
 # SteamAchieve 개인정보 안내 · Privacy Notice
 
-버전 1.1 · 2026-09-09 · 앱 버전 0.5.12 기준
+버전 1.1 · 2026-09-09 · 앱 버전 0.5.13 기준
 
 ## 한국어
 
@@ -16,6 +16,7 @@ SteamAchieve 는 서버가 없는 완전 로컬 도구입니다. 사용자의 �
 | 업적·게임 아이콘, 커버 이미지 | Steam CDN | `cache\icons\` | 안 감 |
 | 친구 목록·친구의 보유 게임·친구의 업적 (옵트인) | Steam Web API — **친구가 공개한 것만** | `cache\friends\` (7일) | 안 감 |
 | 수동 추가 친구, 친구 별명 | 사용자가 입력 | `friends_manual.json` | 안 감 |
+| 친구 활동 기록 — 친구가 업적을 **딴 시각**, 친구의 최근 2주 플레이 (옵트인) | Steam Web API — **친구가 공개한 것만** | `friend_activity.json` (친구당 최근 90일·2,000개까지, 친구를 목록에서 지우면 그 친구 몫도 함께 지워짐) | 안 감 |
 | 업적 메모·북마크, 월간 목표, 화면 설정 | 사용자가 입력 | `notes.json`, `state.json` | 안 감 |
 | 업적 내 진행도("8,988 / 10,000") | 내 **공개 프로필 업적 페이지**(Web API 에 없는 값) | `cache\progress\` (1시간) | 안 감 |
 | 오류 기록 | 앱 내부 예외 | `last_error.txt`, `session_log.txt` (SteamID 는 가려서 기록) | 안 감 — 사용자가 문제 보고 때 직접 첨부할 때만 |
@@ -25,7 +26,7 @@ SteamAchieve 는 서버가 없는 완전 로컬 도구입니다. 사용자의 �
 
 | 호스트 | 용도 | 언제 |
 |---|---|---|
-| `api.steampowered.com` | Steam Web API (보유 게임·업적·스키마·전역 달성률·프로필 요약·친구 목록·스토어 목록) | 항상(계정 연결 후) |
+| `api.steampowered.com` | Steam Web API (보유 게임·업적·스키마·전역 달성률·프로필 요약·친구 목록·친구의 최근 2주 플레이·스토어 목록) | 항상(계정 연결 후) |
 | `store.steampowered.com` | 스토어 API (추천 후보의 가격·태그·설명) | 추천 탭을 연 뒤 |
 | `steamcommunity.com` | 맞춤 URL 해석, **업적 내 진행도를 읽을 내 공개 업적 페이지**(게임을 열 때 1회), 브라우저로 여는 링크(가이드·통계·프로필 설정) | 첫 실행 · 게임을 열 때 · 사용자가 링크를 눌렀을 때 |
 | `cdn.cloudflare.steamstatic.com`, `cdn.akamai.steamstatic.com`, `shared.cloudflare.steamstatic.com`, `steamcdn-a.akamaihd.net` | 업적 아이콘·게임 아이콘·커버 이미지 (Steam API 응답이 주는 이미지 주소도 이 계열 호스트) | 화면에 보이는 이미지가 필요할 때 |
@@ -66,6 +67,7 @@ SteamAchieve is a fully local tool with no server. Your data never leaves your P
 | Achievement/game icons, cover images | Steam CDN | `cache\icons\` | No |
 | Friend list, friends' owned games and achievements (opt-in) | Steam Web API — **public data only** | `cache\friends\` (7 days) | No |
 | Manually added friends, friend nicknames | You | `friends_manual.json` | No |
+| Friend activity — **when** friends unlocked achievements, their last-2-weeks playtime (opt-in) | Steam Web API — **public data only** | `friend_activity.json` (up to 90 days / 2,000 entries per friend; removing a friend deletes their entries too) | No |
 | Notes, bookmarks, monthly goal, UI settings | You | `notes.json`, `state.json` | No |
 | In-achievement progress ("8,988 / 10,000") | Your **public profile achievement page** (not available in the Web API) | `cache\progress\` (1 hour) | No |
 | Error logs | App exceptions | `last_error.txt`, `session_log.txt` (SteamID masked) | No — only if you attach them to a bug report yourself |
