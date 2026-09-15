@@ -1,6 +1,6 @@
 # SteamAchieve 개인정보 안내 · Privacy Notice
 
-버전 1.1 · 2026-09-14 · 앱 버전 0.5.14 기준
+버전 1.2 · 2026-09-15 · 앱 버전 0.5.15 기준
 
 ## 한국어
 
@@ -31,7 +31,8 @@ SteamAchieve 는 서버가 없는 완전 로컬 도구입니다. 사용자의 �
 | `steamcommunity.com` | 맞춤 URL 해석, **업적 내 진행도를 읽을 내 공개 업적 페이지**(게임을 열 때 1회), 브라우저로 여는 링크(가이드·통계·프로필 설정) | 첫 실행 · 게임을 열 때 · 사용자가 링크를 눌렀을 때 |
 | `cdn.cloudflare.steamstatic.com`, `cdn.akamai.steamstatic.com`, `shared.cloudflare.steamstatic.com`, `steamcdn-a.akamaihd.net` | 업적 아이콘·게임 아이콘·커버 이미지 (Steam API 응답이 주는 이미지 주소도 이 계열 호스트) | 화면에 보이는 이미지가 필요할 때 |
 | `api.github.com` | **새 버전 확인 (옵트인, 기본 꺼짐)** — 릴리스 페이지에 인증 없는 GET 1회/일. 키·SteamID 는 어떤 형태로도 실리지 않음 | 설정에서 켠 경우만 |
-| `github.com` | 릴리스 페이지·문제 보고 페이지를 **브라우저로** 열 때(앱 자체는 접속하지 않음) | 사용자가 버튼을 눌렀을 때 |
+| `github.com` | 릴리스 페이지·문제 보고 페이지를 **브라우저로** 열 때, 그리고 **업데이트 받기** — 새 버전의 `SteamAchieve.exe` 와 해시 파일(`SHA256SUMS.txt`)을 인증 없이 GET. 키·SteamID 는 어떤 형태로도 실리지 않음 | 사용자가 버튼을 눌렀을 때 · 업데이트 창에서 [업데이트]를 눌렀을 때만 |
+| `release-assets.githubusercontent.com`, `objects.githubusercontent.com` | **업데이트 받기** — GitHub 가 위 파일 다운로드를 이 주소로 넘겨 줌(파일 저장소). 앱은 이 두 호스트 외의 넘김 주소는 거부 | 업데이트 창에서 [업데이트]를 눌렀을 때만 |
 | `isthereanydeal.com`, `www.fanatical.com`, `www.greenmangaming.com`, `www.humblebundle.com` | "최저가 보기" — 설정에서 고른 사이트의 게임 페이지를 **브라우저로** 열 때(앱 자체는 접속하지 않으며 가격 데이터도 받지 않음). 주소에는 스팀 게임 번호 또는 게임 이름만 실림. 제휴 링크 아님 | 사용자가 메뉴·버튼을 눌렀을 때 |
 
 ### 수집하지 않는 것
@@ -40,10 +41,11 @@ SteamAchieve 는 서버가 없는 완전 로컬 도구입니다. 사용자의 �
 
 ### 옵트인 기능
 - **친구 비교**와 **새 버전 확인**은 기본 꺼짐이며 설정에서 켠 경우에만 해당 호출이 나갑니다. 끄면 즉시 멈춥니다.
+- **업데이트 받기**는 새 버전 알림을 눌러 연 창에서 [업데이트]를 누를 때만 일어납니다. 받은 파일은 해시가 릴리스의 `SHA256SUMS.txt` 와 일치할 때만 기존 `SteamAchieve.exe` 를 바꾸고, 일치하지 않으면 지웁니다.
 
 ### 데이터 삭제
 - 설정 › 저장 › "캐시 비우기" 로 캐시를, "로그아웃"으로 키를 지웁니다.
-- 전부 지우려면 `%APPDATA%\SteamAchieve\` 폴더를 삭제하면 됩니다. 앱은 그 밖에 아무것도 남기지 않습니다(레지스트리는 읽기만 하고 쓰지 않습니다).
+- 전부 지우려면 `%APPDATA%\SteamAchieve\` 폴더를 삭제하면 됩니다. 앱은 그 밖에 아무것도 남기지 않습니다(레지스트리는 읽기만 하고 쓰지 않습니다). 업데이트 중에만 exe 옆에 `SteamAchieve.exe.new`·`.old` 가 잠시 생기고, 다음 실행 때 지워집니다.
 
 ### 로컬 레지스트리 · 스팀 클라이언트
 - 현재 실행 중인 게임을 표시하기 위해 `HKCU\Software\Valve\Steam` 의 `RunningAppID` 등 몇 개 키를 **읽기만** 합니다. 값을 쓰거나 Steam 클라이언트에 영향을 주지 않습니다.
@@ -82,7 +84,8 @@ Nothing else. You can verify with a firewall or proxy.
 | `steamcommunity.com` | Custom URL resolution; **your public achievement page** read once per game for in-achievement progress; links opened in your browser | First run; when you open a game; when you click a link |
 | `cdn.cloudflare.steamstatic.com`, `cdn.akamai.steamstatic.com`, `shared.cloudflare.steamstatic.com`, `steamcdn-a.akamaihd.net` | Icons and cover images (image URLs returned by the Steam API point at these hosts) | When an image is shown |
 | `api.github.com` | **Update check (opt-in, off by default)** — one unauthenticated GET per day to the releases page. The key and SteamID are never included | Only if enabled in Settings |
-| `github.com` | Release page / issue page opened **in your browser** (the app itself does not connect) | When you click the button |
+| `github.com` | Release page / issue page opened **in your browser**, and **downloading an update** — unauthenticated GET of the new `SteamAchieve.exe` and its hash file (`SHA256SUMS.txt`). The key and SteamID are never included | When you click the button · only when you press [Update] in the update window |
+| `release-assets.githubusercontent.com`, `objects.githubusercontent.com` | **Downloading an update** — GitHub redirects the file download above to this file storage. The app refuses redirects to any other host | Only when you press [Update] in the update window |
 | `isthereanydeal.com`, `www.fanatical.com`, `www.greenmangaming.com`, `www.humblebundle.com` | "See best price" — opens the game's page on the site you chose **in your browser** (the app itself does not connect and downloads no price data). The URL carries only the Steam app id or the game name. Not affiliate links | When you click the menu item or button |
 
 ### What is not collected
@@ -91,10 +94,11 @@ Nothing else. You can verify with a firewall or proxy.
 
 ### Opt-in features
 - **Friends comparison** and **update check** are off by default; their calls happen only when you enable them in Settings and stop immediately when disabled.
+- **Downloading an update** happens only when you press [Update] in the window opened from the new-version notice. The downloaded file replaces `SteamAchieve.exe` only if its hash matches the release's `SHA256SUMS.txt`; otherwise it is deleted.
 
 ### Deleting your data
 - Settings › Storage › "Clear cache" removes the cache; "Log out" removes the key.
-- To remove everything, delete `%APPDATA%\SteamAchieve\`. The app leaves nothing else (it only reads the registry, never writes).
+- To remove everything, delete `%APPDATA%\SteamAchieve\`. The app leaves nothing else (it only reads the registry, never writes). Only during an update, `SteamAchieve.exe.new` / `.old` appear next to the exe for a moment and are removed on the next start.
 
 ### Local registry and the Steam client
 - To show the currently running game the app **reads** a few keys under `HKCU\Software\Valve\Steam` (e.g. `RunningAppID`). It never writes or affects the Steam client.
