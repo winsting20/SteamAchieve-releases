@@ -1,6 +1,6 @@
 # SteamAchieve 개인정보 안내 · Privacy Notice
 
-버전 1.3 · 2026-09-16 · 앱 버전 0.5.17 기준
+버전 1.4 · 2026-09-17 · 앱 버전 0.5.18 기준
 
 ## 한국어
 
@@ -61,6 +61,7 @@ SteamAchieve 는 서버가 없는 완전 로컬 도구입니다. 사용자의 �
 
 ### 로컬 레지스트리 · 스팀 클라이언트
 - 현재 실행 중인 게임을 표시하기 위해 `HKCU\Software\Valve\Steam` 의 `RunningAppID` 등 몇 개 키를 **읽기만** 합니다. 값을 쓰거나 Steam 클라이언트에 영향을 주지 않습니다.
+- 방금 달성한 업적을 바로 보여 주기 위해, 로그인한 **본인 계정**의 업적 통계 캐시(`<Steam 설치 폴더>\appcache\stats\UserGameStats_*.bin`·`UserGameStatsSchema_*.bin`)를 **읽기만** 합니다. 스팀 웹 API 가 달성을 몇 분 늦게 알려 주기 때문입니다. 파일을 고치지 않고, 읽은 내용은 PC 밖으로 나가지 않으며, 친구 등 다른 계정 조회에는 쓰지 않습니다.
 - "스팀에서 보기" 버튼은 `steam://nav/games/details/<appid>`(보유) 또는 `steam://store/<appid>`(미보유) 주소를 **운영체제 셸에 넘길 뿐**입니다. 게임 번호 외에 아무것도 실리지 않고, 앱이 직접 접속하는 곳은 늘어나지 않습니다. **게임을 실행하거나 설치하지 않습니다.**
 
 문의: https://github.com/winsting20/SteamAchieve-releases/issues
@@ -126,6 +127,7 @@ Pressing [Get the key inside the app] opens the **Steam sign-in page** inside th
 
 ### Local registry and the Steam client
 - To show the currently running game the app **reads** a few keys under `HKCU\Software\Valve\Steam` (e.g. `RunningAppID`). It never writes or affects the Steam client.
+- To show a just-earned achievement right away, the app **reads** the Steam client's achievement stats cache for **your own signed-in account** (`<Steam folder>\appcache\stats\UserGameStats_*.bin` and `UserGameStatsSchema_*.bin`), because the Steam Web API reports unlocks a few minutes late. It never modifies those files, nothing read from them leaves your PC, and they are never used for other accounts such as friends.
 - The "View in Steam" button only hands `steam://nav/games/details/<appid>` (owned) or `steam://store/<appid>` (not owned) to the OS shell. Nothing but the app id travels with it, and it adds no host the app connects to. **It does not launch or install the game.**
 
 Contact: https://github.com/winsting20/SteamAchieve-releases/issues
