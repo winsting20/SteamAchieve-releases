@@ -25,16 +25,21 @@
 - **친구** (옵트인) — 친구 코드·프로필 주소로 친구를 넣고 공통 게임의 진행률을 나란히 비교. 차이는 색 막대로(친구가 앞서면 빨강이 왼쪽, 내가 앞서면 초록이 오른쪽), 겨룰 수 없는 비공개 친구는 기본으로 숨김. 게임 화면에는 그 게임을 가진 친구들의 순위.
 - **친구 › 활동 보기** (옵트인) — 친구가 **언제 어떤 업적을 땄는지**, 지금 무슨 게임을 하고 있는지, 어느 게임에서 업적을 주로 땄는지. 고른 친구의 최근 2주 플레이까지.
 - 달성 알림, 월간 목표, 한국어·영어 UI, 글자 크기 3단계, 시작할 때마다 새 버전 확인·자동 업데이트.
-- 첫 실행은 3단계 위저드가 안내합니다(키 발급 → 계정 확인 → 게임 세부 정보 공개 확인).
+- **API 키 없이도 바로 시작합니다(기본 모드)** — 이 PC 의 스팀이 받아 둔 게임과 업적이 보입니다. 보유 게임 전체·친구·추천은 [전체 기능 켜기]에서 키를 한 번 등록하면 켜집니다(3단계 위저드: 키 발급 → 계정 확인 → 게임 세부 정보 공개 확인).
 
 ![친구 탭](screenshots/friends.png)
 
 ## 첫 실행
 
-1. `SteamAchieve.exe` 를 실행합니다.
-2. SteamID64 또는 프로필 주소(`https://steamcommunity.com/id/...`)를 입력합니다.
-3. Steam Web API 키를 입력합니다. **본인 키만 쓰고 남에게 주지 마세요.**
-4. 연결을 누르면 끝입니다. 이후 실행부터는 바로 마지막 화면으로 이어집니다.
+`SteamAchieve.exe` 를 실행하면 끝입니다. 스팀 클라이언트에 로그인돼 있으면 **기본 모드**로 바로 시작합니다 — 스팀이 이 PC 에 받아 둔 게임과 업적을 키 없이 보여 줍니다(파일을 읽기만 합니다).
+
+보유 게임 전체·친구·추천을 쓰려면 상단의 [전체 기능 켜기]를 눌러 한 번만 등록합니다.
+
+1. SteamID64 또는 프로필 주소(`https://steamcommunity.com/id/...`)를 입력합니다.
+2. Steam Web API 키를 입력합니다. **본인 키만 쓰고 남에게 주지 마세요.**
+3. 연결을 누르면 끝입니다. 이후 실행부터는 바로 마지막 화면으로 이어집니다.
+
+스팀 클라이언트가 꺼져 있거나 로그인돼 있지 않으면 기본 모드 대신 이 등록 창이 먼저 뜹니다.
 
 ### Web API 키 발급
 `https://steamcommunity.com/dev/apikey` 에서 발급합니다. 도메인 이름 칸은 아무 값(예: `localhost`)이나 됩니다. 발급된 키는 16진수 32자입니다.
@@ -65,7 +70,7 @@ Get-FileHash .\SteamAchieve.exe -Algorithm SHA256
 
 ## 데이터와 삭제
 
-모든 데이터는 `%APPDATA%\SteamAchieve\` 안에만 있습니다. 완전히 지우려면 그 폴더를 삭제하면 됩니다. 앱은 레지스트리에 쓰지 않습니다(현재 실행 중인 게임을 표시하려고 Steam 클라이언트 키를 읽기만 합니다). 방금 깬 업적을 바로 보여 주려고 Steam 클라이언트의 본인 업적 통계 캐시 파일도 읽기만 합니다.
+모든 데이터는 `%APPDATA%\SteamAchieve\` 안에만 있습니다. 완전히 지우려면 그 폴더를 삭제하면 됩니다. 앱은 레지스트리에 쓰지 않습니다(현재 실행 중인 게임을 표시하려고 Steam 클라이언트 키를 읽기만 합니다). 방금 깬 업적을 바로 보여 주고 기본 모드에서 게임·업적을 채우려고 Steam 클라이언트의 본인 업적 통계 캐시 파일도 읽기만 합니다.
 
 ## 문제 보고
 
@@ -96,13 +101,18 @@ Every release ships with `SHA256SUMS.txt`. Verify with PowerShell: `Get-FileHash
 - **Friends** (opt-in) — add friends by friend code or profile URL and compare progress on games you both own, with a colored difference bar (red to the left = friend ahead, green to the right = you lead); friends whose achievements are private are hidden by default. Per-game friend ranking on the game screen.
 - **Friends › Activity view** (opt-in) — **when** your friends unlocked which achievements, what they are playing right now, and which games their achievements came from, plus the last two weeks of playtime for the friend you pick.
 - Unlock notifications, monthly goal, Korean/English UI, three text sizes, update check and one-click update on every launch.
-- A 3-step wizard guides the first run (key → account → game-details visibility).
+- **Starts without an API key (basic mode)** — shows the games and achievements the Steam client on this PC has cached. Your full library, friends and Discover turn on once you register a key via [Enable all features] (a 3-step wizard: key → account → game-details visibility).
 
 ### First run
-1. Run `SteamAchieve.exe`.
-2. Enter your SteamID64 or profile URL.
-3. Enter your Steam Web API key (from `https://steamcommunity.com/dev/apikey`; any domain name works). **Use only your own key.**
-4. Click Connect.
+Just run `SteamAchieve.exe`. If the Steam client is signed in, the app starts in **basic mode** right away — no key needed (it only reads files Steam keeps on this PC).
+
+To turn on your full library, friends and Discover, press [Enable all features] at the top and register once:
+
+1. Enter your SteamID64 or profile URL.
+2. Enter your Steam Web API key (from `https://steamcommunity.com/dev/apikey`; any domain name works). **Use only your own key.**
+3. Click Connect.
+
+If the Steam client is not running or not signed in, this registration window opens first instead of basic mode.
 
 The key is stored encrypted with Windows DPAPI in `%APPDATA%\SteamAchieve\credentials.dat` and is used only as the auth parameter of Steam API calls. Every host the app contacts is listed in [PRIVACY.md](PRIVACY.md).
 

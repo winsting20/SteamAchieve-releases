@@ -1,6 +1,6 @@
 # SteamAchieve 개인정보 안내 · Privacy Notice
 
-버전 1.4 · 2026-10-01 · 앱 버전 0.5.24 기준
+버전 1.5 · 2026-10-01 · 앱 버전 0.5.25 기준
 
 ## 한국어
 
@@ -10,9 +10,9 @@ SteamAchieve 는 서버가 없는 완전 로컬 도구입니다. 사용자의 �
 ### 앱이 다루는 데이터
 | 데이터 | 어디서 오는가 | 어디에 저장되는가 | 밖으로 나가는가 |
 |---|---|---|---|
-| Steam Web API 키 | 사용자가 첫 실행 때 입력하거나, **앱 안 브라우저**가 발급 페이지에서 읽어 옴 | `%APPDATA%\SteamAchieve\credentials.dat` (Windows DPAPI 로 암호화, 이 Windows 계정에서만 복호화) | **Steam API 호출의 인증 파라미터로만** 전송. 그 외 어디로도 안 감 |
+| Steam Web API 키 (선택 — 없어도 기본 모드로 동작) | 사용자가 [전체 기능 켜기]에서 입력하거나, **앱 안 브라우저**가 발급 페이지에서 읽어 옴 | `%APPDATA%\SteamAchieve\credentials.dat` (Windows DPAPI 로 암호화, 이 Windows 계정에서만 복호화) | **Steam API 호출의 인증 파라미터로만** 전송. 그 외 어디로도 안 감 |
 | 스팀 계정 비밀번호 · 스팀 로그인 세션 | 사용자가 **앱 안에 뜨는 스팀 로그인 창**(Microsoft Edge WebView2)에 직접 입력 | **저장하지 않습니다.** 그 창의 세션 데이터(쿠키 등)는 임시 폴더에 1회용으로만 두고 창이 닫히면 폴더째 삭제합니다 | 사용자가 친 비밀번호는 **스팀 서버로만** 갑니다. 앱은 그 입력을 읽지 않고(자바스크립트로 읽는 것은 주소가 `/dev/apikey` 일 때의 키 문자열뿐입니다) 개발자에게도 가지 않습니다 |
-| SteamID64 | 사용자가 입력(프로필 주소·맞춤 이름은 Steam 이 숫자로 변환) | `state.json` | Steam API 호출 파라미터로만 |
+| SteamID64 | 이 PC 의 스팀 클라이언트에 로그인된 계정을 자동으로 읽거나, 사용자가 입력(프로필 주소·맞춤 이름은 Steam 이 숫자로 변환) | `state.json` | Steam API 호출 파라미터로만 |
 | 보유 게임·플레이타임·업적·전역 달성률·게임 태그·가격 | Steam Web API / Steam 스토어 API | `cache\` 폴더 | 안 감 |
 | 업적·게임 아이콘, 커버 이미지 | Steam CDN | `cache\icons\` | 안 감 |
 | 친구 목록·친구의 보유 게임·친구의 업적 (옵트인) | Steam Web API — **친구가 공개한 것만** | `cache\friends\` (7일) | 안 감 |
@@ -62,6 +62,7 @@ SteamAchieve 는 서버가 없는 완전 로컬 도구입니다. 사용자의 �
 ### 로컬 레지스트리 · 스팀 클라이언트
 - 현재 실행 중인 게임을 표시하기 위해 `HKCU\Software\Valve\Steam` 의 `RunningAppID` 등 몇 개 키를 **읽기만** 합니다. 값을 쓰거나 Steam 클라이언트에 영향을 주지 않습니다.
 - 방금 달성한 업적을 바로 보여 주기 위해, 로그인한 **본인 계정**의 업적 통계 캐시(`<Steam 설치 폴더>\appcache\stats\UserGameStats_*.bin`·`UserGameStatsSchema_*.bin`)를 **읽기만** 합니다. 스팀 웹 API 가 달성을 몇 분 늦게 알려 주기 때문입니다. 파일을 고치지 않고, 읽은 내용은 PC 밖으로 나가지 않으며, 친구 등 다른 계정 조회에는 쓰지 않습니다.
+- **API 키가 없을 때(기본 모드)** 는 위 업적 통계 캐시가 내 게임·업적의 **주 출처**가 됩니다. 이때 함께 **읽기만** 하는 파일은 플레이 시간이 적힌 `<Steam 설치 폴더>\userdata\<계정 번호>\config\localconfig.vdf` 와 프로필 이름이 적힌 `<Steam 설치 폴더>\config\loginusers.vdf` 입니다(로그인 아이디는 쓰지 않습니다). 이 PC 의 스팀이 받아 둔 게임만 보이며, 읽은 내용은 PC 밖으로 나가지 않습니다. 기본 모드에서 스팀으로 나가는 호출은 키가 필요 없는 공개 자료(전역 달성률·스토어 정보·이미지)뿐입니다.
 - "스팀에서 보기" 버튼은 `steam://nav/games/details/<appid>`(보유) 또는 `steam://store/<appid>`(미보유) 주소를 **운영체제 셸에 넘길 뿐**입니다. 게임 번호 외에 아무것도 실리지 않고, 앱이 직접 접속하는 곳은 늘어나지 않습니다. **게임을 실행하거나 설치하지 않습니다.**
 
 문의: https://github.com/winsting20/SteamAchieve-releases/issues
@@ -76,9 +77,9 @@ SteamAchieve is a fully local tool with no server. Your data never leaves your P
 ### Data the app handles
 | Data | Source | Stored at | Leaves your PC? |
 |---|---|---|---|
-| Steam Web API key | You, at first run — or read off the key page by the **in-app browser** | `%APPDATA%\SteamAchieve\credentials.dat` (Windows DPAPI, decryptable only by this Windows account) | **Only as the auth parameter of Steam API calls.** Nowhere else |
+| Steam Web API key (optional — the app works in basic mode without it) | You, via [Enable all features] — or read off the key page by the **in-app browser** | `%APPDATA%\SteamAchieve\credentials.dat` (Windows DPAPI, decryptable only by this Windows account) | **Only as the auth parameter of Steam API calls.** Nowhere else |
 | Steam password · Steam sign-in session | Typed by you into the **Steam sign-in window shown inside the app** (Microsoft Edge WebView2) | **Not stored.** That window's session data (cookies etc.) lives in a temporary folder for one use only and the whole folder is deleted when the window closes | The password you type goes **only to Steam**. The app never reads it (the only thing it reads with JavaScript is the key string, and only while the address is `/dev/apikey`), and it never reaches the developer |
-| SteamID64 | You (profile URL / custom name resolved by Steam) | `state.json` | Only as a Steam API parameter |
+| SteamID64 | Read automatically from the Steam client signed in on this PC, or entered by you (profile URL / custom name resolved by Steam) | `state.json` | Only as a Steam API parameter |
 | Owned games, playtime, achievements, global percentages, tags, prices | Steam Web API / Steam store API | `cache\` | No |
 | Achievement/game icons, cover images | Steam CDN | `cache\icons\` | No |
 | Friend list, friends' owned games and achievements (opt-in) | Steam Web API — **public data only** | `cache\friends\` (7 days) | No |
@@ -97,7 +98,7 @@ Nothing else. You can verify with a firewall or proxy.
 | `store.steampowered.com` | Store API (prices, tags, descriptions for recommendations) | After opening the Discover tab |
 | `steamcommunity.com` | Custom URL resolution; **your public achievement page** read once per game for in-achievement progress; links opened in your browser; **the Steam sign-in and key pages opened in the in-app browser** | First run; when you open a game; when you click a link; when you press [Get the key inside the app] |
 | `cdn.cloudflare.steamstatic.com`, `cdn.akamai.steamstatic.com`, `shared.cloudflare.steamstatic.com`, `steamcdn-a.akamaihd.net` | Icons and cover images (image URLs returned by the Steam API point at these hosts) | When an image is shown |
-| `api.github.com` | **Update check (opt-in, off by default)** — one unauthenticated GET per day to the releases page. The key and SteamID are never included | Only if enabled in Settings |
+| `api.github.com` | **Update check (on every start + once a day while running, always)** — one unauthenticated GET to the releases page. The key and SteamID are never included | On every start + once a day while running, always |
 | `github.com` | Release page / issue page opened **in your browser**, and **downloading an update** — unauthenticated GET of the new `SteamAchieve.exe` and its hash file (`SHA256SUMS.txt`). The key and SteamID are never included | When you click the button · only when you press [Update] in the update window |
 | `release-assets.githubusercontent.com`, `objects.githubusercontent.com` | **Downloading an update** — GitHub redirects the file download above to this file storage. The app refuses redirects to any other host | Only when you press [Update] in the update window |
 | `isthereanydeal.com`, `www.fanatical.com`, `www.greenmangaming.com`, `www.humblebundle.com` | "See best price" — opens the game's page on the site you chose **in your browser** (the app itself does not connect and downloads no price data). The URL carries only the Steam app id or the game name. Not affiliate links | When you click the menu item or button |
@@ -118,7 +119,7 @@ Pressing [Get the key inside the app] opens the **Steam sign-in page** inside th
 - Your Steam password — the app has no field for it, never reads it, and never stores it.
 
 ### Opt-in features
-- **Friends comparison** and **update check** are off by default; their calls happen only when you enable them in Settings and stop immediately when disabled.
+- **Friends comparison** is off by default; its calls happen only when you enable it in Settings and stop immediately when disabled. The **update check** is not opt-in: it runs on every start and once a day while running (see the table above).
 - **Downloading an update** happens only when you press [Update] in the window opened from the new-version notice. The downloaded file replaces `SteamAchieve.exe` only if its hash matches the release's `SHA256SUMS.txt`; otherwise it is deleted.
 
 ### Deleting your data
@@ -128,6 +129,7 @@ Pressing [Get the key inside the app] opens the **Steam sign-in page** inside th
 ### Local registry and the Steam client
 - To show the currently running game the app **reads** a few keys under `HKCU\Software\Valve\Steam` (e.g. `RunningAppID`). It never writes or affects the Steam client.
 - To show a just-earned achievement right away, the app **reads** the Steam client's achievement stats cache for **your own signed-in account** (`<Steam folder>\appcache\stats\UserGameStats_*.bin` and `UserGameStatsSchema_*.bin`), because the Steam Web API reports unlocks a few minutes late. It never modifies those files, nothing read from them leaves your PC, and they are never used for other accounts such as friends.
+- **Without an API key (basic mode)** that achievement stats cache becomes the **primary source** of your games and achievements. Two more files are **read only**: `<Steam folder>\userdata\<account number>\config\localconfig.vdf` (playtime) and `<Steam folder>\config\loginusers.vdf` (profile name — the sign-in name is never used). Only games the Steam client on this PC has cached are shown, and nothing read leaves your PC. In basic mode the only calls to Steam are for public data that needs no key (global percentages, store info, images).
 - The "View in Steam" button only hands `steam://nav/games/details/<appid>` (owned) or `steam://store/<appid>` (not owned) to the OS shell. Nothing but the app id travels with it, and it adds no host the app connects to. **It does not launch or install the game.**
 
 Contact: https://github.com/winsting20/SteamAchieve-releases/issues
