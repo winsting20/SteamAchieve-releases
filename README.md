@@ -1,4 +1,6 @@
-# SteamAchieve
+# Achievement Atlas
+
+> 이전 이름은 SteamAchieve 입니다. 실행 파일 이름과 저장 폴더는 그대로라 기존 기록이 이어집니다.
 
 스팀 계정의 업적 진행도를 한 화면에서 보는 Windows 데스크톱 앱입니다. 서버가 없는 완전 로컬 도구이며, 입력한 API 키와 SteamID 는 Steam 외 어디로도 가지 않습니다.
 
@@ -86,6 +88,8 @@ Get-FileHash .\SteamAchieve.exe -Algorithm SHA256
 ---
 
 ## English
+
+> Formerly named SteamAchieve. The executable name and data folder are unchanged, so your history carries over.
 
 A Windows desktop app that shows your Steam achievement progress in one place. Fully local, no server — the API key and SteamID you enter never leave your PC except as parameters of Steam API calls.
 

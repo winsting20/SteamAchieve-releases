@@ -1,6 +1,6 @@
 # SteamAchieve 개인정보 안내 · Privacy Notice
 
-버전 1.5 · 2026-10-01 · 앱 버전 0.5.26 기준
+버전 1.6 · 2026-10-20 · 앱 버전 0.5.27 기준
 
 ## 한국어
 
@@ -19,6 +19,8 @@ SteamAchieve 는 서버가 없는 완전 로컬 도구입니다. 사용자의 �
 | 수동 추가 친구, 친구 별명 | 사용자가 입력 | `friends_manual.json` | 안 감 |
 | 친구 활동 기록 — 친구가 업적을 **딴 시각**, 친구의 최근 2주 플레이 (옵트인) | Steam Web API — **친구가 공개한 것만** | `friend_activity.json` (친구당 최근 90일·2,000개까지, 친구를 목록에서 지우면 그 친구 몫도 함께 지워짐) | 안 감 |
 | 업적 메모·북마크, 월간 목표, 화면 설정 | 사용자가 입력 | `notes.json`, `state.json` | 안 감 |
+| 게임 태그("완주 예정" 등) | 사용자가 입력 | `tags.json` | 안 감 |
+| 세션 일지 — 플레이한 게임·시작/끝 시각·그때 딴 업적 | 이 PC 에서 감지한 "플레이 중" 상태 | `sessions.json` (최근 200개) | 안 감 |
 | 업적 내 진행도("8,988 / 10,000") | 내 **공개 프로필 업적 페이지**(Web API 에 없는 값) | `cache\progress\` (1시간) | 안 감 |
 | 오류 기록 | 앱 내부 예외 | `last_error.txt`, `session_log.txt` (SteamID 는 가려서 기록) | 안 감 — 사용자가 문제 보고 때 직접 첨부할 때만 |
 
@@ -86,6 +88,8 @@ SteamAchieve is a fully local tool with no server. Your data never leaves your P
 | Manually added friends, friend nicknames | You | `friends_manual.json` | No |
 | Friend activity — **when** friends unlocked achievements, their last-2-weeks playtime (opt-in) | Steam Web API — **public data only** | `friend_activity.json` (up to 90 days / 2,000 entries per friend; removing a friend deletes their entries too) | No |
 | Notes, bookmarks, monthly goal, UI settings | You | `notes.json`, `state.json` | No |
+| Game tags ("to finish" etc.) | You | `tags.json` | No |
+| Session journal — game played, start/end time, achievements unlocked meanwhile | "Playing" status detected on this PC | `sessions.json` (last 200) | No |
 | In-achievement progress ("8,988 / 10,000") | Your **public profile achievement page** (not available in the Web API) | `cache\progress\` (1 hour) | No |
 | Error logs | App exceptions | `last_error.txt`, `session_log.txt` (SteamID masked) | No — only if you attach them to a bug report yourself |
 
